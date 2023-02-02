@@ -6,9 +6,13 @@
     Example: [1, 2, 3] -> [3, 2, 1]
 */
 function reverseArr(arr) {
+    let reversedarr = [];
 
+    for(let i = arr.length - 1; i >= 0; i--) {
+      reversedarr.push(arr[i]);
+    }
+    return reversedarr;
 }
-
 /*
     Create a function that takes an object as an argument
     and returns the keys of the object in an array.
@@ -25,7 +29,11 @@ function reverseArr(arr) {
     ["name", "age", "breed", "friendly"]
 */
 function objectKeysToArr(object) {
-
+    let output = [];
+    for (key in object) {
+        output.push(key);
+    }
+    return output;
 }
 
 /*
@@ -52,7 +60,14 @@ function objectKeysToArr(object) {
     }
 */
 function combineObjects(object1, object2) {
-
+    let output = {};
+    for (key in object1){
+        output[key] = object1[key];
+    }
+    for (key in object2){
+        output[key] = object2[key];
+    }
+    return output;
 }
 
 
