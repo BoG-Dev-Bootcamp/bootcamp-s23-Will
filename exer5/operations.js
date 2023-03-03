@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+import Dog from "./models/dog.js"
 /** 
 Get a dog from the db based on a specific attribute
 
@@ -10,7 +10,13 @@ Get a dog from the db based on a specific attribute
 
 */
 const readDog = async (identifier) => {
-
+    try{ 
+        const dog = await Dog.find(indentifier)
+        return dog
+    } catch(e) {
+        console.log(e)
+    }
+    
 }
 
 /** 
@@ -22,7 +28,12 @@ Get all dogs from the db
 
 */
 const readDogs = async () => {
-
+    try{
+        const dogs = await Dog.find({})
+        return dogs
+    } catch(e){
+        console.log(e)
+    }
 }
 
 /** 
@@ -35,14 +46,21 @@ Create a new dog and save it to the db
 
 */
 const createDog = async (newDogData) => {
-
+    try {
+    const newDog = new Dog(newDogData);
+    newDog.save()
+    return true
+    } catch(e) {
+        console.log(e)
+        return false
+    }
 }
 
 /** 
 Edit a dog from the db based on a specific attribute.
 This should work like a PATCH request, meaning the original
 Dog object should remain but the specificed attributes should be changed. 
-
+e
     @async
     @function updateDog
     @param {Object} identifier - the field and value to search by (used to identify the dog we want to edit)
@@ -51,7 +69,14 @@ Dog object should remain but the specificed attributes should be changed.
 
 */
 const updateDog = async (identifier, newDogData) => {
-
+    try {
+        const dog = await Dog.findOne(identifier)
+        dog.age = newDogData.age
+        await dog.save()
+        return true
+    } catch(e) {
+        return false
+    }
 }
 /** 
 Remove a dog from the db based on a specific attribute
@@ -63,7 +88,12 @@ Remove a dog from the db based on a specific attribute
 
 */
 const deleteDog = async (identifier) => {
-
+    try {
+        await Dog.findAndDelete(identifier)
+        return true
+    } catch(e){
+        return false 
+    }
 }
 
 export { readDog, readDogs, createDog, updateDog, deleteDog }

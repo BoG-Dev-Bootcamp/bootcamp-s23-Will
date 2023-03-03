@@ -4,7 +4,6 @@ import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-
 mongoose.set('strictQuery', false);
 
 const connectDB = async () => {
