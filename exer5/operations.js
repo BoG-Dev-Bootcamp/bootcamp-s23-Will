@@ -11,7 +11,7 @@ Get a dog from the db based on a specific attribute
 */
 const readDog = async (identifier) => {
     try{ 
-        const dog = await Dog.find(indentifier)
+        const dog = await Dog.find(identifier)
         return dog
     } catch(e) {
         console.log(e)
